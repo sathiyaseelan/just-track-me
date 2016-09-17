@@ -1,0 +1,58 @@
+.extra-margins {
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+
+main {
+    //padding-top: 3rem;
+    //padding-bottom: 2rem;
+    color: #fff;
+    top: -50px;
+}
+header {
+  height: 50px !important;
+}
+html,
+body,header,main,
+.view {
+    height: 100%;
+    position: relative;
+}
+
+header  li {
+  color: white;
+}
+.view {
+    background: image-url("bg.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+//Circle related styles
+#circle {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+.small {
+  display: block;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+
+}
+.circle-center{
+  font-family: 'Affogato-Medium',sans-serif;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+}
+.button-text {
+  margin-left: 10px;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProgramCounter</title>
+    <%= csrf_meta_tags %>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+  </head>
+  <body>
+    <header>
+    <!--Navbar-->
+    <nav class="navbar navbar-dark  navbar-fixed-top">
+
+        <!-- Collapse button-->
+        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="container">
+            <!--Collapse content-->
+            <div class="collapse navbar-toggleable-xs" id="collapseEx2">
+                <!--Navbar Brand-->
+
+                <%= link_to "PROGRAM COUNTER", root_path, class: 'navbar-brand' %>
+                <!--Links-->
+                <!--<ul class="nav navbar-nav">
+                </ul>  -->
+                <ul class="nav navbar-nav pull-right">
+                  <% if user_signed_in? %>
+                  <li class="nav-item active">
+                      <a class="nav-link" href="<%=root_path%>">HOME<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">NEW GOAL</a>
+                  </li>
+                  <li class="nav-item">
+                      <%= link_to 'PROFILE',edit_user_registration_path(current_user), class: "nav-link"%>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to 'LOG OUT',destroy_user_session_path, method: :delete, class: "nav-link"%>
+                  </li>
+                  <% else %>
+                  <li class="nav-item">
+                    <%= link_to 'SIGN UP',new_user_session_path, class: "nav-link"%>
+                  </li>
+                    <li class="nav-item">
+                      <%= link_to 'LOG IN',new_user_session_path, class: "nav-link"%>
+                    </li>
+                  <% end %>
+              </ul>
+            </div>
+            <!--/.Collapse content-->
+        </div>
+    </nav>
+    <!--/.Navbar-->
+  </header>
+  <main>
+  <!--Mask-->
+  <div class="view hm-black-strong">
+    <!--Intro content-->
+    <div class="full-bg-img  pattern-6 flex-center">
+      <%= yield %>
+    </div>
+  </div>
+</main>
+<footer>
+</footer>
+  <%= javascript_include_tag 'application' %>
+</body>
+</html>
