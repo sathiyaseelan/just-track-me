@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ProgramCounter</title>
+    <title>TMG</title>
     <%= csrf_meta_tags %>
 
     <!-- Font Awesome -->
@@ -22,7 +22,7 @@
             <div class="collapse navbar-toggleable-xs" id="collapseEx2">
                 <!--Navbar Brand-->
 
-                <%= link_to "PROGRAM COUNTER", root_path, class: 'navbar-brand' %>
+                <%= link_to "TRACK MY GOALS", root_path, class: 'navbar-brand' %>
                 <!--Links-->
                 <!--<ul class="nav navbar-nav">
                 </ul>  -->
@@ -32,7 +32,10 @@
                       <a class="nav-link" href="<%=root_path%>">HOME<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">NEW GOAL</a>
+                      <%= link_to "NEW GOAL", new_goal_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                      <%= link_to "MY GOALS", goals_path, class: "nav-link" %>
                   </li>
                   <li class="nav-item">
                       <%= link_to 'PROFILE',edit_user_registration_path(current_user), class: "nav-link"%>
@@ -60,7 +63,19 @@
   <div class="view hm-black-strong">
     <!--Intro content-->
     <div class="full-bg-img  pattern-6 flex-center">
-      <%= yield %>
+        <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <%= bootstrap_flash %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <%= yield %>
+          </div>
+          </div>
+        </div>
     </div>
   </div>
 </main>

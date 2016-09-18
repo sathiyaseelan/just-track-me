@@ -1,5 +1,20 @@
-<h1>New Goal</h1>
+<div class="card">
+<div class="card-block">
 
+    <!--Header-->
+    <div class="text-xs-center">
+        <h3><i class="fa fa-paper-plane"></i> Create a Goal</h3>
+        <hr class="m-t-2 m-b-2">
+        <!--Body-->
+        <p class="bold">Yay. Excited for the new goal?</p>
+        <br>
+    </div>
 <%= render 'form', goal: @goal %>
-
-<%= link_to 'Back', goals_path %>
+</div>
+<!--Footer-->
+    <div class="modal-footer">
+        <div class="options">
+            <p>Want to go back?<%= link_to 'Back', goals_path %></p>
+        </div>
+    </div>
+</div>

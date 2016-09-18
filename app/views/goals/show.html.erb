@@ -1,24 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="pull-up">
+<%= form_for(@goal) do |f| %>
+<ul>
+    <li class="title">
+        <h1 class="h1-responsive"><%= @goal.name%></h1></li>
+    <li class="title">
+        <p>Just few more</p>
+    </li>
 
-<p>
-  <strong>Name:</strong>
-  <%= @goal.name %>
-</p>
+    <li>
+      <div id="circle">
+          <%= f.hidden_field :remaining %>
+          <%= f.hidden_field :target %>
+      </div>
+    </li>
+    <li>
+        <%= f.button(type: :submit,id: 'sub_btn', class:'btn btn-danger btn-md') do %>
+          <i class="fa fa-minus"></i>
+        <% end %>
 
-<p>
-  <strong>Priority:</strong>
-  <%= @goal.priority %>
-</p>
-
-<p>
-  <strong>Target:</strong>
-  <%= @goal.target %>
-</p>
-
-<p>
-  <strong>Unit:</strong>
-  <%= @goal.unit %>
-</p>
-
-<%= link_to 'Edit', edit_goal_path(@goal) %> |
-<%= link_to 'Back', goals_path %>
+        <%= f.button(type: :submit,id: 'add_btn', class:'btn btn-success btn-md') do %>
+          <i class="fa fa-plus"></i><span class="button-text">COUNT UP</span>
+        <% end %>
+    </li>
+</ul>
+<% end %>
+</div>

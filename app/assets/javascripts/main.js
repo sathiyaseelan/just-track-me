@@ -1,7 +1,5 @@
 var bar = new ProgressBar.Circle(circle, {
   color: '#aaa',
-  // This has to be the same size as the maximum width to
-  // prevent clipping
   strokeWidth: 10,
   trailWidth: 10,
   easing: 'easeInOut',
@@ -11,19 +9,21 @@ var bar = new ProgressBar.Circle(circle, {
   },
   from: { color: '#D32F2F', width: 10 },
   to: { color: '#388E3C', width: 10 },
-  // Set default step function for all animate calls
+
   step: function(state, circle) {
     circle.path.setAttribute('stroke', state.color);
    	circle.path.setAttribute('stroke-width', state.width);
-
-    var remValue = 100 - Math.round(circle.value() * 100);
+    let target = $('#goal_target').val();
+    if (!target)
+      target = 100;
+    var remValue = target - Math.round(circle.value() * target);
     var text = 'MORE';
-    if (remValue >= 80) {
+    if (remValue >= 80/target) {
     	circle.path.setAttribute('stroke', '#D32F2F');
     }
-    else if (remValue >= 50) {
+    else if (remValue >= 50/target) {
     	circle.path.setAttribute('stroke', '#FF5722');
-    }else if (remValue >= 30){
+    }else if (remValue >= 30/target){
     	circle.path.setAttribute('stroke', '#FFEB3B');
     }else {
     	circle.path.setAttribute('stroke', '#388E3C');
@@ -39,5 +39,16 @@ var bar = new ProgressBar.Circle(circle, {
 });
 bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
 //bar.text.style.fontSize = '2.5rem';
+const remaining = $('#goal_remaining').val();
+const target = $('#goal_target').val();
+bar.animate((target - remaining)/target);  // Number from 0.0 to 1.0
 
-bar.animate(0.7);  // Number from 0.0 to 1.0
+$('#add_btn').on('click', function() {
+    const remaining = $('#goal_remaining').val();
+    $('#goal_remaining').val(remaining - 1);
+});
+
+$('#sub_btn').on('click', function() {
+    const remaining = +$('#goal_remaining').val();
+    $('#goal_remaining').val(remaining + 1);
+});

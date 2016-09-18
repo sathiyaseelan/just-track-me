@@ -3,15 +3,25 @@
     margin-bottom: 2.5rem;
 }
 
-
 main {
     //padding-top: 3rem;
     //padding-bottom: 2rem;
     color: #fff;
     top: -50px;
 }
+.pull-up {
+  top: -100px;
+  position: relative;
+}
+.card {
+  //margin-top: 100px;
+  min-width: 600px;
+}
 header {
   height: 50px !important;
+}
+body {
+  min-height: 900px;
 }
 html,
 body,header,main,
@@ -20,7 +30,7 @@ body,header,main,
     position: relative;
 }
 
-header  li {
+.title,header  li{
   color: white;
 }
 .view {
@@ -55,4 +65,17 @@ header  li {
 }
 .button-text {
   margin-left: 10px;
+}
+
+form,.card {
+  color: #757575;
+}
+
+.dark-icon {
+  color: #212121;
+}
+
+select.form-control {
+  margin-left: 50px;
+  width: 90%;
 }

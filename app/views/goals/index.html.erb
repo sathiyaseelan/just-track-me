@@ -1,33 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-block">
+      <!--Header-->
+      <div class="text-xs-center">
+          <h3><i class="fa fa-paper-plane"></i>MY GOALS</h3>
+          <hr class="m-t-2 m-b-2">
+          <!--Body-->
+          <p class="bold">Keep doing...</p>
+          <br>
+      </div>
+      <ul class="list-group">
+        <% order_using_priority(@goals).each do |goal| %>
+          <li class="list-group-item">
+              <h4 class="list-group-item-heading"><%= link_to goal_path(goal) do %><%= goal.name %><% end %><span class="tag bg-primary label-pill pull-xs-left"><%= goal.priority %>
+              </span>
+                <%= link_to goal_path(goal), method: :delete do %>
+                    <span class="tag  label-pill pull-xs-right"><i class="fa fa-check-square-o dark-icon"></i></span>
+                <% end %>
+                <%= link_to edit_goal_path(goal) do %>
+                    <span class="tag  label-pill pull-xs-right"><i class="fa fa-pencil dark-icon"></i></span>
+                <% end %>
+              </h4>
+                <p class="list-group-item-text">
+                   <%= pluralize(goal.remaining, goal.unit) %> more
+                </p>
+          </li>
+          <% end %>
+      </ul>
 
-<h1>Goals</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Priority</th>
-      <th>Target</th>
-      <th>Unit</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @goals.each do |goal| %>
-      <tr>
-        <td><%= goal.name %></td>
-        <td><%= goal.priority %></td>
-        <td><%= goal.target %></td>
-        <td><%= goal.unit %></td>
-        <td><%= link_to 'Show', goal %></td>
-        <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
-        <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Goal', new_goal_path %>
+  </div>
+</div>

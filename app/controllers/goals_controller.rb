@@ -1,10 +1,11 @@
 class GoalsController < ApplicationController
+  before_action :set_user
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
 
   # GET /goals
   # GET /goals.json
   def index
-    @goals = Goal.all
+    @goals = @user.goals
   end
 
   # GET /goals/1
@@ -25,7 +26,7 @@ class GoalsController < ApplicationController
   # POST /goals.json
   def create
     @goal = Goal.new(goal_params)
-
+    @goal.user = @user
     respond_to do |format|
       if @goal.save
         format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
@@ -42,8 +43,12 @@ class GoalsController < ApplicationController
   def update
     respond_to do |format|
       if @goal.update(goal_params)
-        format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @goal }
+        if @goal.remaining_previously_changed?
+          format.html { redirect_to @goal}
+        else
+          format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
+          format.json { render :show, status: :ok, location: @goal }
+        end
       else
         format.html { render :edit }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
@@ -62,6 +67,9 @@ class GoalsController < ApplicationController
   end
 
   private
+    def set_user
+      @user = current_user
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_goal
       @goal = Goal.find(params[:id])
@@ -69,6 +77,6 @@ class GoalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def goal_params
-      params.require(:goal).permit(:name, :priority, :target, :unit)
+      params.require(:goal).permit(:name, :priority, :target, :unit, :user_id, :done, :expected_completion_day, :remaining, :default )
     end
 end

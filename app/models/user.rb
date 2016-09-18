@@ -4,4 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :goals
+
+  def default_goal
+    self.goals.find{|g| g.default}
+  end
 end
